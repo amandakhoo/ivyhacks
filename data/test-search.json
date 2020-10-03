@@ -1,0 +1,95 @@
+{
+  "header": {
+    "type": "esearch",
+    "version": "0.3"
+  },
+  "esearchresult": {
+    "count": "418202",
+    "retmax": "20",
+    "retstart": "18",
+    "querykey": "1",
+    "webenv": "MCID_5f77bdfcb48029616024b3fb",
+    "idlist": [
+      "33001611",
+      "33001587",
+      "33001583",
+      "33001531",
+      "33001390",
+      "33001337",
+      "33001336",
+      "33001328",
+      "33001309",
+      "33001307",
+      "33001299",
+      "33001269",
+      "33001242",
+      "33001241",
+      "33001187",
+      "33001186",
+      "33001012",
+      "33000910",
+      "33000898",
+      "33000732"
+    ],
+    "translationset": [
+      {
+        "from": "breast cancer",
+        "to": "\"breast neoplasms\"[MeSH Terms] OR (\"breast\"[All Fields] AND \"neoplasms\"[All Fields]) OR \"breast neoplasms\"[All Fields] OR (\"breast\"[All Fields] AND \"cancer\"[All Fields]) OR \"breast cancer\"[All Fields]"
+      }
+    ],
+    "translationstack": [
+      {
+        "term": "\"breast neoplasms\"[MeSH Terms]",
+        "field": "MeSH Terms",
+        "count": "294612",
+        "explode": "Y"
+      },
+      {
+        "term": "\"breast\"[All Fields]",
+        "field": "All Fields",
+        "count": "519579",
+        "explode": "N"
+      },
+      {
+        "term": "\"neoplasms\"[All Fields]",
+        "field": "All Fields",
+        "count": "2702064",
+        "explode": "N"
+      },
+      "AND",
+      "GROUP",
+      "OR",
+      {
+        "term": "\"breast neoplasms\"[All Fields]",
+        "field": "All Fields",
+        "count": "295218",
+        "explode": "N"
+      },
+      "OR",
+      {
+        "term": "\"breast\"[All Fields]",
+        "field": "All Fields",
+        "count": "519579",
+        "explode": "N"
+      },
+      {
+        "term": "\"cancer\"[All Fields]",
+        "field": "All Fields",
+        "count": "2353070",
+        "explode": "N"
+      },
+      "AND",
+      "GROUP",
+      "OR",
+      {
+        "term": "\"breast cancer\"[All Fields]",
+        "field": "All Fields",
+        "count": "280937",
+        "explode": "N"
+      },
+      "OR",
+      "GROUP"
+    ],
+    "querytranslation": "\"breast neoplasms\"[MeSH Terms] OR (\"breast\"[All Fields] AND \"neoplasms\"[All Fields]) OR \"breast neoplasms\"[All Fields] OR (\"breast\"[All Fields] AND \"cancer\"[All Fields]) OR \"breast cancer\"[All Fields]"
+  }
+}
