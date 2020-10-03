@@ -13,15 +13,9 @@ pub struct SearchResult {
     pub retstart: usize,
     #[serde(deserialize_with = "from_str")]
     pub querykey: usize,
-    pub webenv: Option<String>,
+    pub webenv: String,
     #[serde(deserialize_with = "from_strs")]
     pub idlist: Vec<usize>,
-}
-
-impl SearchResult {
-    pub fn webenv(&self) -> Option<&str> {
-        self.webenv.as_deref()
-    }
 }
 
 /// Entire json wrapper around search result
@@ -43,7 +37,7 @@ fn test_from_search() -> Result<(), Error> {
             retmax: 20,
             retstart: 18,
             querykey: 1,
-            webenv: Some("MCID_5f77bdfcb48029616024b3fb".to_string()),
+            webenv: "MCID_5f77bdfcb48029616024b3fb".to_string(),
             idlist: vec![
                 33001611, 33001587, 33001583, 33001531, 33001390, 33001337, 33001336, 33001328,
                 33001309, 33001307, 33001299, 33001269, 33001242, 33001241, 33001187, 33001186,
