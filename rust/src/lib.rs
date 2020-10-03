@@ -12,9 +12,14 @@ use types::*;
 
 const BASE_URL: &str = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/";
 
-pub async fn pubmed_query(query: &str, retmode: &str) -> Result<Response, Error> {
+pub async fn pubmed_search(query: &str) -> Result<Response, Error> {
     let client = Client::new();
-    let query = [("db", "pubmed"), ("term", query), ("retmode", retmode)];
+    let query = [
+        ("db", "pubmed"),
+        ("term", query),
+        ("usehistory", "y"),
+        ("retmode", "json"),
+    ];
     let base_url = BASE_URL.to_string() + "esearch.fcgi";
 
     client
@@ -23,4 +28,10 @@ pub async fn pubmed_query(query: &str, retmode: &str) -> Result<Response, Error>
         .send()
         .await
         .map_err(|e| e.into())
+}
+
+pub async fn search_response_to_result(r: Response) -> Result<SearchResult, Error> {
+    let text = r.text().await?;
+    let response: SearchResponse = serde_json::from_str(&text)?;
+    Ok(response.e_search_result)
 }

@@ -2,23 +2,33 @@
 use anyhow::Error;
 use serde::{de, Deserialize, Deserializer, Serialize};
 
+/// Contains count, idlist, and webenv information
 #[derive(Debug, PartialEq, Serialize, Deserialize)]
 pub struct SearchResult {
     #[serde(deserialize_with = "from_str")]
-    count: usize,
+    pub count: usize,
     #[serde(deserialize_with = "from_str")]
-    retmax: usize,
+    pub retmax: usize,
     #[serde(deserialize_with = "from_str")]
-    retstart: usize,
-    webenv: Option<String>,
+    pub retstart: usize,
+    #[serde(deserialize_with = "from_str")]
+    pub querykey: usize,
+    pub webenv: Option<String>,
     #[serde(deserialize_with = "from_strs")]
-    idlist: Vec<usize>,
+    pub idlist: Vec<usize>,
 }
 
+impl SearchResult {
+    pub fn webenv(&self) -> Option<&str> {
+        self.webenv.as_deref()
+    }
+}
+
+/// Entire json wrapper around search result
 #[derive(Serialize, Deserialize, Debug, PartialEq)]
 pub struct SearchResponse {
     #[serde(rename = "esearchresult")]
-    e_search_result: SearchResult,
+    pub e_search_result: SearchResult,
 }
 
 #[test]
@@ -32,6 +42,7 @@ fn test_from_search() -> Result<(), Error> {
             count: 418202,
             retmax: 20,
             retstart: 18,
+            querykey: 1,
             webenv: Some("MCID_5f77bdfcb48029616024b3fb".to_string()),
             idlist: vec![
                 33001611, 33001587, 33001583, 33001531, 33001390, 33001337, 33001336, 33001328,
