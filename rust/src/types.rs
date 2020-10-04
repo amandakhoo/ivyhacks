@@ -27,9 +27,9 @@ pub struct SearchResponse {
 
 /// Data structure meant to bridge the gap between core rust functionality and web app display
 #[derive(Serialize, Debug, PartialEq)]
-pub struct Search {
-    pub terms: String,
-    pub results: Vec<String>,
+pub struct Search<'t, 'r> {
+    pub terms: &'t str,
+    pub results: Vec<&'r str>,
 }
 
 #[test]
@@ -58,14 +58,15 @@ fn test_from_search() -> Result<(), Error> {
 #[test]
 fn test_search_to_string() -> Result<(), Error> {
     let search_result = Search {
-        terms: "breast+cancer".to_string(),
-        results: vec!["one article".to_string(), "two article".to_string()],
+        terms: "breast+cancer",
+        results: vec!["one article", "two article"],
     };
-    let body = serde_json::to_string(search_result)?;
+    let body = serde_json::to_string(&search_result)?;
     assert_eq!(
         body,
         r#"{"terms":"breast+cancer","results":["one article","two article"]}"#
     );
+    Ok(())
 }
 
 fn from_str<'de, T, D>(deserializer: D) -> Result<T, D::Error>
