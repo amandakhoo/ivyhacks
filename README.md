@@ -45,3 +45,8 @@ As a workaround we will use the tool locally to download some articles
 then render the web app with these saved results. In the future,
 the web app would actually call out to the tool (compiled to web assembly)
 and render the results directly.
+
+### Front-end
+
+Started from https://www.freecodecamp.org/news/how-to-build-a-todo-app-with-react-typescript-nodejs-and-mongodb/ as a base!
+(only using the client parts)
