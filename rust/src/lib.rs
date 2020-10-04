@@ -71,10 +71,34 @@ pub async fn search_response_to_result(r: Response) -> Result<SearchResult, Erro
 fn xml_tests() -> Result<(), Error> {
     let response = include_str!("../../data/test-fetch.xml");
     let doc = response_to_xml(response)?;
-    assert_eq!(doc.descendants()
-            .find(|node| node.attribute("NlmCategory") == Some("METHODS"))
-            .and_then(|node| node.text()),
-            Some("The CBM records thermodynamic metabolic data from the breast skin surface over a period of time using two wearable biometric patches consisting of eight sensors each and a data recording device. The acquired multi-dimensional temperature time series data are analyzed to determine the presence of breast tissue abnormalities. The objective of this paper is to present the scientific background of CBM and also to describe the history around the design and development of the technology.")
+    let mut articles = doc
+        .root()
+        .children()
+        .next()
+        .unwrap()
+        .children()
+        .filter(|node| node.is_element());
+    let third_article = articles.nth(3).unwrap();
+    println!("{:?}", third_article);
+    let article_body = third_article
+        .children()
+        .find(|node| node.tag_name().name() == "body");
+    let methods_node = article_body.and_then(|node| {
+        node.descendants()
+            .find(|node| node.text() == Some("Methods"))
+    });
+    println!("{:?}", methods_node);
+    let methods_section = methods_node.and_then(|node| node.parent());
+    println!("{:?}", methods_section);
+    let mut methods_paragraphs = methods_section
+        .map(|node| {
+            node.descendants()
+                .filter(|node| node.tag_name().name() == "p")
+        })
+        .unwrap();
+
+    assert_eq!(methods_paragraphs.next().and_then(|node| node.text()),
+            Some("The present study was conducted at the Radiation Oncology Unit of the Careggi University Hospital of Florence, Italy. This is a prospective monocenter study including cancer patients admitted to the department to receive either systemic and/or radiation treatment. All patients recruited underwent a survey approved by our institutional ethics review board.")
     );
     Ok(())
 }
