@@ -58,6 +58,18 @@ async fn main() -> Result<(), Error> {
     }
     let doc = rust::response_to_xml(&body)?;
     let method_paragraphs = rust::method_paragraphs(&doc);
+
+    if demo {
+        let search_results = rust::Search {
+            terms: &term,
+            results: method_paragraphs
+                .iter()
+                .filter_map(|result| result.as_deref())
+                .collect(),
+        };
+        let output = serde_json::to_string(&search_results)?;
+        std::fs::write("demo.json", output)?;
+    }
     for paragraph in method_paragraphs {
         if let Some(paragraph) = paragraph {
             println!("{}", paragraph);
