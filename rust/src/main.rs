@@ -7,6 +7,10 @@ use structopt::StructOpt;
     about = "A tool to download xml papers from pubmed"
 )]
 struct Args {
+    /// Activate debug mode for manually checking downloaded xml papers.
+    #[structopt(short, long)]
+    debug: bool,
+
     /// Terms for which to search.
     ///
     /// These must be separated with `+`'s, eg, breast+cancer.
@@ -26,6 +30,7 @@ struct Args {
 #[tokio::main]
 async fn main() -> Result<(), Error> {
     let Args {
+        debug,
         terms: term,
         max: retmax,
         start: retstart,
@@ -39,7 +44,9 @@ async fn main() -> Result<(), Error> {
     let fetch_response =
         rust::pubmed_fetch(response.querykey, &response.webenv, retmax, retstart).await?;
     let body = fetch_response.text().await?;
-    // if debug, write the results to file
+    if debug {
+        std::fs::write("debug.xml", &body)?;
+    }
     let doc = rust::response_to_xml(&body)?;
     let method_paragraphs = rust::method_paragraphs(&doc);
     for paragraph in method_paragraphs {

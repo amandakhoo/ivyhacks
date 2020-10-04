@@ -57,7 +57,7 @@ pub async fn pubmed_fetch(
 }
 
 /// Given a response whose body is xml, return the corresponding xml document
-pub fn response_to_xml<'a>(s: &'a str) -> Result<Document<'a>, Error> {
+pub fn response_to_xml(s: &str) -> Result<Document<'_>, Error> {
     Document::parse(&s).map_err(|e| e.into())
 }
 
