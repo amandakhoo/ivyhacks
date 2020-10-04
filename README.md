@@ -33,3 +33,15 @@ https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&query_key=1&web
 `http://api.springernature.com/openaccess/jats?q=subject:Chemistry&api_key=..`
 
 https://dev.springernature.com/adding-constraints for constraints, potentially keywords or contains
+
+## Implementation notes
+
+This repo contains a Rust command line tool for searching
+for and saving the methods of articles matching the search.
+Ideally we would use the core functionality of this tool in the 
+web app version of this project. However, it looks like there
+are dependency issues when compiling this project to web assembly.
+As a workaround we will use the tool locally to download some articles
+then render the web app with these saved results. In the future,
+the web app would actually call out to the tool (compiled to web assembly)
+and render the results directly.
