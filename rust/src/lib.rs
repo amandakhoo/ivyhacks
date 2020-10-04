@@ -67,7 +67,7 @@ pub async fn search_response_to_result(r: Response) -> Result<SearchResult, Erro
     Ok(response.e_search_result)
 }
 
-fn method_paragraphs<'a>(doc: &'a Document) -> Vec<Option<String>> {
+pub fn method_paragraphs<'a>(doc: &'a Document) -> Vec<Option<String>> {
     let articles = doc
         .root()
         .children()
