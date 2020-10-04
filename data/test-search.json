@@ -4,36 +4,36 @@
     "version": "0.3"
   },
   "esearchresult": {
-    "count": "418202",
+    "count": "586547",
     "retmax": "20",
-    "retstart": "18",
+    "retstart": "0",
     "querykey": "1",
-    "webenv": "MCID_5f77bdfcb48029616024b3fb",
+    "webenv": "MCID_5f79127686702466ba37cb38",
     "idlist": [
-      "33001611",
-      "33001587",
-      "33001583",
-      "33001531",
-      "33001390",
-      "33001337",
-      "33001336",
-      "33001328",
-      "33001309",
-      "33001307",
-      "33001299",
-      "33001269",
-      "33001242",
-      "33001241",
-      "33001187",
-      "33001186",
-      "33001012",
-      "33000910",
-      "33000898",
-      "33000732"
+      "7531585",
+      "7531260",
+      "7531195",
+      "7531068",
+      "7531033",
+      "7530964",
+      "7530962",
+      "7530949",
+      "7530896",
+      "7530769",
+      "7530732",
+      "7530720",
+      "7530715",
+      "7530657",
+      "7530583",
+      "7530549",
+      "7530125",
+      "7529917",
+      "7529892",
+      "7529886"
     ],
     "translationset": [
       {
-        "from": "breast cancer",
+        "from": "breast+cancer",
         "to": "\"breast neoplasms\"[MeSH Terms] OR (\"breast\"[All Fields] AND \"neoplasms\"[All Fields]) OR \"breast neoplasms\"[All Fields] OR (\"breast\"[All Fields] AND \"cancer\"[All Fields]) OR \"breast cancer\"[All Fields]"
       }
     ],
@@ -41,19 +41,19 @@
       {
         "term": "\"breast neoplasms\"[MeSH Terms]",
         "field": "MeSH Terms",
-        "count": "294612",
+        "count": "54578",
         "explode": "Y"
       },
       {
         "term": "\"breast\"[All Fields]",
         "field": "All Fields",
-        "count": "519579",
+        "count": "686674",
         "explode": "N"
       },
       {
         "term": "\"neoplasms\"[All Fields]",
         "field": "All Fields",
-        "count": "2702064",
+        "count": "463905",
         "explode": "N"
       },
       "AND",
@@ -62,20 +62,20 @@
       {
         "term": "\"breast neoplasms\"[All Fields]",
         "field": "All Fields",
-        "count": "295218",
+        "count": "56418",
         "explode": "N"
       },
       "OR",
       {
         "term": "\"breast\"[All Fields]",
         "field": "All Fields",
-        "count": "519579",
+        "count": "686674",
         "explode": "N"
       },
       {
         "term": "\"cancer\"[All Fields]",
         "field": "All Fields",
-        "count": "2353070",
+        "count": "1821325",
         "explode": "N"
       },
       "AND",
@@ -84,7 +84,7 @@
       {
         "term": "\"breast cancer\"[All Fields]",
         "field": "All Fields",
-        "count": "280937",
+        "count": "480386",
         "explode": "N"
       },
       "OR",

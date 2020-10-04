@@ -16,3 +16,11 @@ Has 3rd party API, nothing official.
 ### Pubmed API
 
 Second choice if we can't scrape google scholar.
+
+https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&query_key=1&webenv=MCID_5f7917aac3bc2a2d306e9f98&retmax=20
+
+### Nature-springer open access API
+
+`http://api.springernature.com/openaccess/jats?q=subject:Chemistry&api_key=..`
+
+https://dev.springernature.com/adding-constraints for constraints, potentially keywords or contains

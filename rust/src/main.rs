@@ -39,7 +39,16 @@ async fn main() -> Result<(), Error> {
     let fetch_response =
         rust::pubmed_fetch(response.querykey, &response.webenv, retmax, retstart).await?;
     let body = fetch_response.text().await?;
-    println!("{}", body);
+    // if debug, write the results to file
+    let doc = rust::response_to_xml(&body)?;
+    let method_paragraphs = rust::method_paragraphs(&doc);
+    for paragraph in method_paragraphs {
+        if let Some(paragraph) = paragraph {
+            println!("{}", paragraph);
+        } else {
+            eprintln!("------------paper either wasn't full text or had an unexpected format");
+        }
+    }
 
     Ok(())
 }

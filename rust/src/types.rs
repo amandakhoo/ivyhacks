@@ -27,21 +27,21 @@ pub struct SearchResponse {
 
 #[test]
 fn test_from_search() -> Result<(), Error> {
-    let input = include_str!("../../data/test-search.json");
-    let response: SearchResponse = serde_json::from_str(input)?;
+    let input = std::fs::read_to_string("../data/test-search.json")?;
+    let response: SearchResponse = serde_json::from_str(&input)?;
     let result: SearchResult = response.e_search_result;
     assert_eq!(
         result,
         SearchResult {
-            count: 418202,
+            count: 586547,
             retmax: 20,
-            retstart: 18,
+            retstart: 0,
             querykey: 1,
-            webenv: "MCID_5f77bdfcb48029616024b3fb".to_string(),
+            webenv: "MCID_5f79127686702466ba37cb38".to_string(),
             idlist: vec![
-                33001611, 33001587, 33001583, 33001531, 33001390, 33001337, 33001336, 33001328,
-                33001309, 33001307, 33001299, 33001269, 33001242, 33001241, 33001187, 33001186,
-                33001012, 33000910, 33000898, 33000732
+                7531585, 7531260, 7531195, 7531068, 7531033, 7530964, 7530962, 7530949, 7530896,
+                7530769, 7530732, 7530720, 7530715, 7530657, 7530583, 7530549, 7530125, 7529917,
+                7529892, 7529886
             ]
         }
     );
