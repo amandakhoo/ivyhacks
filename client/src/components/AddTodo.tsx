@@ -1,32 +1,20 @@
-import React, { useState } from 'react'
+import React from 'react'
 
-type Props = { 
-  saveTodo: (e: React.FormEvent, formData: ITodo | any) => void 
+type Props = {
+  query: string
 }
 
-const AddTodo: React.FC<Props> = ({ saveTodo }) => {
-  const [formData, setFormData] = useState<ITodo | {}>()
-
-  const handleForm = (e: React.FormEvent<HTMLInputElement>): void => {
-    setFormData({
-      ...formData,
-      [e.currentTarget.id]: e.currentTarget.value,
-    })
-  }
+const AddTodo: React.FC<Props> = ({ query }) => {
 
   return (
-    <form className='Form' onSubmit={(e) => saveTodo(e, formData)}>
+    <form className='Form' >
       <div>
         <div>
           <label htmlFor='name'>Name</label>
-          <input onChange={handleForm} type='text' id='name' />
-        </div>
-        <div>
-          <label htmlFor='description'>Description</label>
-          <input onChange={handleForm} type='text' id='description' />
+          <input type='text' id='name' defaultValue={query} />
         </div>
       </div>
-      <button disabled={formData === undefined ? true: false} >Add Todo</button>
+      <button disabled={query !== ""} >Search</button>
     </form>
   )
 }
