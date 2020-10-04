@@ -8,8 +8,16 @@ use structopt::StructOpt;
 )]
 struct Args {
     /// Activate debug mode for manually checking downloaded xml papers.
-    #[structopt(short, long)]
+    #[structopt(long)]
     debug: bool,
+
+    /// Activate demo mode.
+    ///
+    /// This saves the results as well as the search terms to be used by the web app.
+    /// In the future, this will be rendered obsolete by using core functionality
+    /// within the web app directly.
+    #[structopt(short, long)]
+    demo: bool,
 
     /// Terms for which to search.
     ///
@@ -31,6 +39,7 @@ struct Args {
 async fn main() -> Result<(), Error> {
     let Args {
         debug,
+        demo,
         terms: term,
         max: retmax,
         start: retstart,
