@@ -14,7 +14,7 @@ const BASE_URL: &str = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/";
 pub async fn pubmed_search(query: &str) -> Result<Response, Error> {
     let client = Client::new();
     let query = [
-        ("db", "pubmed"),
+        ("db", "pmc"),
         ("term", query),
         ("usehistory", "y"),
         ("retmode", "json"),
@@ -39,9 +39,8 @@ pub async fn pubmed_fetch(
 ) -> Result<Response, Error> {
     let client = Client::new();
     let query = [
-        ("db", "pubmed"),
+        ("db", "pmc"),
         ("query_key", &query_key.to_string()),
-        ("usehistory", "y"),
         ("WebEnv", web_env),
         ("retmode", "xml"),
         ("retmax", &retmax.to_string()),
