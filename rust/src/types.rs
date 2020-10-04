@@ -25,6 +25,26 @@ pub struct SearchResponse {
     pub e_search_result: SearchResult,
 }
 
+/// Data structure meant to bridge the gap between core rust functionality and web app display
+#[derive(Serialize, Debug, PartialEq)]
+pub struct Search<'t, 'r> {
+    terms: &'t str,
+    results: Vec<&'r str>,
+}
+
+impl Search<'_, '_> {
+    pub fn new<'t, 'r>(terms: &'t str, results: &[&'r str]) -> Search<'t, 'r> {
+        Search {
+            terms,
+            results: results
+                .iter()
+                .cloned()
+                .filter(|text| !text.is_empty())
+                .collect(),
+        }
+    }
+}
+
 #[test]
 fn test_from_search() -> Result<(), Error> {
     let input = std::fs::read_to_string("../data/test-search.json")?;
@@ -44,6 +64,17 @@ fn test_from_search() -> Result<(), Error> {
                 7529892, 7529886
             ]
         }
+    );
+    Ok(())
+}
+
+#[test]
+fn test_search_to_string() -> Result<(), Error> {
+    let search_result = Search::new("breast+cancer", &["one article", "two article", ""]);
+    let body = serde_json::to_string(&search_result)?;
+    assert_eq!(
+        body,
+        r#"{"terms":"breast+cancer","results":["one article","two article"]}"#
     );
     Ok(())
 }
