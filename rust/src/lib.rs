@@ -2,6 +2,7 @@ mod types;
 use anyhow::Error;
 use reqwest::{Client, Response};
 use roxmltree::Document;
+pub use types::Search;
 use types::*;
 
 const BASE_URL: &str = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/";
