@@ -126,7 +126,7 @@ parser.add_argument(
 FLAGS = argparse.Namespace()
 
 # The generated csv file name.
-CSV_FILE_NAME = 'dataset.csv'
+CSV_FILE_NAME = 'dataset_150_300.csv'
 
 # The data limitations
 MAX_EXAMPLE_SIZE_IN_BYTES = 4000
