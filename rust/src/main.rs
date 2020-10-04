@@ -60,13 +60,13 @@ async fn main() -> Result<(), Error> {
     let method_paragraphs = rust::method_paragraphs(&doc);
 
     if demo {
-        let search_results = rust::Search {
-            terms: &term,
-            results: method_paragraphs
+        let search_results = rust::Search::new(
+            &term,
+            &method_paragraphs
                 .iter()
                 .filter_map(|result| result.as_deref())
-                .collect(),
-        };
+                .collect::<Vec<_>>(),
+        );
         let output = serde_json::to_string(&search_results)?;
         std::fs::write("demo.json", output)?;
     }
