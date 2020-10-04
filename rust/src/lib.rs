@@ -1,10 +1,5 @@
 mod types;
 use anyhow::Error;
-/// term -> response
-/// response -> xml
-/// xml -> id's
-/// ids -> responses
-/// response -> methods and materials
 use reqwest::{Client, Response};
 use roxmltree::Document;
 use types::*;
